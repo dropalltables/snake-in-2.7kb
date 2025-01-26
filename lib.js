@@ -5,14 +5,10 @@
             this.attachShadow({mode: 'open'});
             this.shadowRoot.innerHTML = `
                 <style>
-                    :host {
+                    .wrapper {
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
                         align-items: center;
-                        min-height: 100vh;
-                        background: #222;
-                        margin: 0;
                     }
                     .controls {
                         display: flex;
@@ -32,13 +28,16 @@
                     }
                     canvas {
                         border: 2px solid #fff;
+                        background: #000;
                     }
                 </style>
-                <div class="controls">
-                    <div class="score">Score: <span id="s">0</span></div>
-                    <button onclick="alert('Arrow keys to move\\nEat red food\\nDont hit walls/self')">WTF DO I DO</button>
+                <div class="wrapper">
+                    <div class="controls">
+                        <div class="score">Score: <span id="s">0</span></div>
+                        <button onclick="alert('Arrow keys to move\\nEat red food\\nDont hit walls/self')">WTF DO I DO</button>
+                    </div>
+                    <canvas id="g" width="400" height="400"></canvas>
                 </div>
-                <canvas id="g" width="400" height="400"></canvas>
             `;
 
             let context = this.shadowRoot.getElementById('g').getContext('2d'),
@@ -170,7 +169,6 @@
         }
     }
 
-    // Register the custom element
     if (!customElements.get('snake-game')) {
         customElements.define('snake-game', SnakeGame);
     }
