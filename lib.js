@@ -2,16 +2,6 @@
     class SnakeGame extends HTMLElement {
         constructor() {
             super();
-            
-            // Check if device is mobile
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-            // If mobile, don't render anything
-            if (isMobile) {
-                this.style.display = 'none';
-                return;
-            }
-
             this.attachShadow({mode: 'open'});
             this.shadowRoot.innerHTML = `
                 <style>
