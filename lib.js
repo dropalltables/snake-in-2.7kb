@@ -2,10 +2,9 @@
     class SnakeGame extends HTMLElement {
         constructor() {
             super();
-           // Check if device is mobile
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-                || (window.matchMedia("(max-width: 768px)").matches)
-                || ('ontouchstart' in window);
+            
+            // Check if device is mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
             // If mobile, don't render anything
             if (isMobile) {
@@ -80,13 +79,13 @@
             const draw = () => {
                 context.fillStyle = '#000';
                 context.fillRect(0, 0, 400, 400);
-                
-                snake.forEach((segment, index) => 
+
+                snake.forEach((segment, index) =>
                     drawSquare(segment.x, segment.y, index ? '#090' : '#0f0')
                 );
-                
+
                 drawSquare(food.x, food.y, '#f00');
-                
+
                 if(gameOver) {
                     context.fillStyle = '#fff';
                     drawText('game over', 180, 30);
@@ -97,7 +96,7 @@
 
             const update = () => {
                 if(gameOver || !gameStarted) return;
-                
+
                 let head = {
                     x: snake[0].x + directionX,
                     y: snake[0].y + directionY
@@ -109,7 +108,7 @@
                 }
 
                 snake.unshift(head);
-                
+
                 if(head.x == food.x && head.y == food.y) {
                     score += 10;
                     scoreElement.textContent = score;
@@ -138,7 +137,7 @@
                 }
 
                 let validMove = 0;
-                
+
                 switch(event.key) {
                     case 'ArrowUp':
                         if(directionY == 0) {
